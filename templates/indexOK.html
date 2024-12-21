@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monitor de Preços</title>
+</head>
+<body>
+    <h1>Monitor de Preços</h1>
+    <form action="/add" method="POST">
+        <input type="text" name="name" placeholder="Nome do Produto" required>
+        <input type="url" name="url" placeholder="URL do Produto" required>
+        <button type="submit">Adicionar Produto</button>
+    </form>
+    <h2>Produtos Monitorados</h2>
+    <ul>
+        {% for product in products %}
+        <li>
+            {{ product[1] }} - R$ {{ product[3] }}
+            <a href="/delete/{{ product[0] }}">Remover</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
