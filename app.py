@@ -1,6 +1,6 @@
 import time  # Importação para medir o tempo
 from scheduler import update_all_prices
-
+import os
 start_time = time.time()  # Marca o início do processo
 
 from flask import Flask, render_template, request, redirect, url_for
@@ -132,4 +132,5 @@ if __name__ == '__main__':
     init_db()
     start_scheduler(interval_minutes=5)
     logging.info(f"Tempo total de inicialização: {time.time() - start_time:.2f} segundos")
-    app.run(debug=False)
+    port = int(os.environ.get("PORT", 5000))  # Obtém a porta da variável de ambiente ou usa 5000 como padrão
+app.run(host="0.0.0.0", port=port, debug=False)
